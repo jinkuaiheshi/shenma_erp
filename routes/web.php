@@ -10,7 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::any('/admin/login','Admin\AdminController@login' );
+Route::any('/admin/logout','Admin\AdminController@logout' );
