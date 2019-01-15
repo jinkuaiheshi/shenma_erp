@@ -11,4 +11,13 @@
 |
 */
 Route::any('/admin/login','Admin\AdminController@login' );
-Route::any('/admin/logout','Admin\AdminController@logout' );
+Route::get('/admin/logout','Admin\AdminController@logout' );
+
+Route::any('/admin/forget','Admin\AdminController@forget' );
+Route::group(['middleware'=>['web','Admin']],function() {
+    Route::any('/admin/index','Admin\AdminController@index' );
+
+    Route::get('/admin/users','Admin\UserController@index' );
+    Route::post('/admin/user/add','Admin\UserController@add' );
+    Route::get('/admin/data','Admin\UserController@data' );
+});
