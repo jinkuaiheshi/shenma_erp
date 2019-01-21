@@ -19,5 +19,6 @@ Route::group(['middleware'=>['web','Admin']],function() {
 
     Route::get('/admin/users','Admin\UserController@index' );
     Route::post('/admin/user/add','Admin\UserController@add' );
+    Route::get('/admin/ajax/user/status/{id}','Admin\UserController@status' );
     Route::get('/admin/data','Admin\UserController@data' );
 });

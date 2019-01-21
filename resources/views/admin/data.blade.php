@@ -58,6 +58,7 @@
             $(function () {
 
                 $('#user_tab').DataTable( {
+                    "ordering": false,
                     dom: 'Bfrtip',
                     buttons: [
                         'copyHtml5',

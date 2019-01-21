@@ -13,13 +13,12 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class UserController extends CommonController
 {
     public function index(){
-        $data = User::where('status',1)->get();
+        $data = User::All();
         return view('admin/user')->with('data',$data);
     }
     public function add(Request $request){
         if ($request->isMethod('POST')) {
             $username = trim($request['username']);
-
             $user = User::where('username',$username)->first();
             if($user){
                 return redirect(url()->previous())->with('message', '用户名已经存在')->with('type','danger')->withInput();
@@ -39,7 +38,24 @@ class UserController extends CommonController
         }
     }
     public function data(){
-        $data = Log::get();
+        $islogin = session('islogin');
+        $data = Log::where('do_admin',$islogin->username)->orderBy('created_time','DESC')->get();
         return view('admin/data')->with('data',$data);
+    }
+    public function status($id){
+        if($id){
+            $user= User::where('auth',1)->where('id',$id)->first();
+            if($user){
+                if($user->status==1){
+                    $user->status = -1;
+                }else{
+                    $user->status = 1;
+                }
+                if($user->update()){
+                    $this->log($user->username,'更改状态');
+                    return redirect(url()->previous())->with('message', '更改状态成功')->with('type','success');
+                }
+            }
+        }
     }
 }

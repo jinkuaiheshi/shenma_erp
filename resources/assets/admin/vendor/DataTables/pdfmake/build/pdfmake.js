@@ -66,11 +66,13 @@
 			italics: 'Roboto-Italic.ttf',
 			bolditalics: 'Roboto-Italic.ttf'
 		}
+
 	};
 
 	function Document(docDefinition, fonts, vfs) {
 		this.docDefinition = docDefinition;
 		this.fonts = fonts || defaultClientFonts;
+
 		this.vfs = vfs;
 	}
 

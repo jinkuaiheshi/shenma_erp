@@ -40,7 +40,22 @@
                     <td>{{$v->created_time}}</td>
                     <td>{{$v->last_login_time}}</td>
                     <td>{{$v->ip}}</td>
-                    <td></td>
+                    <td>
+                        <a href="{{url('/admin/ajax/user/status/'.$v->id)}}" >
+                            <div class="pull-xs-left m-r-1">
+                            <input type="checkbox" class="js-switch status" data-size="small" data-color="#ddd" data-status="{{$v->id}}" data-secondary-color="#43b968" data-switchery="true" style="display: none;">
+                                @if($v->status == 1)
+                                <span class="switchery switchery-small" style="box-shadow: rgb(67, 185, 104) 0px 0px 0px 0px inset; border-color: rgb(67, 185, 104); background-color: rgb(67, 185, 104); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; transition: background-color 0.4s, left 0.2s;"></small></span>
+                                <small style="left: 0px; transition: background-color 0.4s, left 0.2s;"></small>
+                                    正常
+                                    @elseif($v->status == -1)
+                                    <span class="switchery switchery-small" style="box-shadow: rgb(221, 221, 221) 0px 0px 0px 11px inset; border-color: rgb(221, 221, 221); background-color: rgb(221, 221, 221); transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 13px; transition: background-color 0.4s, left 0.2s; background-color: rgb(255, 255, 255);"></small></span>
+                                    <small style="left: 13px; transition: background-color 0.4s, left 0.2s; background-color: rgb(255, 255, 255);"></small>
+                                    禁用
+                                @endif
+                            </div>
+                        </a>
+                    </td>
                     <td><a href="" ><button type="button" class="btn btn-danger w-min-sm  waves-effect waves-light">删除用户</button></a></td>
                 </tr>
                 @endforeach
@@ -101,6 +116,7 @@
             $(function () {
 
                 $('#user_tab').DataTable( {
+                    "ordering": false,
                     dom: 'Bfrtip',
                     buttons: [
                         'copyHtml5',
@@ -121,4 +137,6 @@
                 },3000);
             })
         </script>
+
+
 @stop

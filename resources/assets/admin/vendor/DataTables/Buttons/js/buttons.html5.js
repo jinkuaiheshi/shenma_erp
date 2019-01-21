@@ -1241,7 +1241,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 				};
 			} ) );
 		}
-
+        console.log(123);
 		var doc = {
 			pageSize: config.pageSize,
 			pageOrientation: config.orientation,
@@ -1279,6 +1279,7 @@ DataTable.ext.buttons.pdfHtml5 = {
 				message: {}
 			},
 			defaultStyle: {
+
 				fontSize: 10
 			}
 		};
@@ -1339,7 +1340,5 @@ DataTable.ext.buttons.pdfHtml5 = {
 
 	download: 'download'
 };
-
-
 return DataTable.Buttons;
 }));

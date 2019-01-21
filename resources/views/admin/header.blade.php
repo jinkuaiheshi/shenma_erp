@@ -85,7 +85,7 @@
                         <span class="s-text">系统设置</span>
                     </a>
                     <ul>
-                        <li><a href="{{url('admin/users')}}">用户管理</a></li>
+                        {{--<li><a href="{{url('admin/users')}}">用户管理</a></li>--}}
                         <li><a href="{{url('admin/data')}}">操作日志</a></li>
                         <li><a href="index3.html">Dashboard 3</a></li>
                     </ul>
