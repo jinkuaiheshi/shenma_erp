@@ -42,5 +42,15 @@ class AdminController extends CommonController
     public function index(){
         return view('admin/index');
     }
+    public function logout(){
+        //登出系统
+        $islogin = session('islogin');
+        if($islogin){
+            session()->forget('islogin');
+            return redirect('/admin/login')->with('message', '成功退出')->with('type','success')->withInput();
+        }else{
+            return redirect('/admin/login')->with('message', '您没有登入，无需退出')->with('type','danger');
+        }
+    }
 
 }

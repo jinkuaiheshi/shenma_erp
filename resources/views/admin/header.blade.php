@@ -85,7 +85,9 @@
                         <span class="s-text">系统设置</span>
                     </a>
                     <ul>
-                        {{--<li><a href="{{url('admin/users')}}">用户管理</a></li>--}}
+                        @if($info->auth >= 2)
+                        <li><a href="{{url('admin/users')}}">用户管理</a></li>
+                        @endif
                         <li><a href="{{url('admin/data')}}">操作日志</a></li>
                         <li><a href="index3.html">Dashboard 3</a></li>
                     </ul>
@@ -259,7 +261,7 @@
                         </a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#"><i class="ti-help m-r-0-5"></i> Help</a>
-                        <a class="dropdown-item" href="#"><i class="ti-power-off m-r-0-5"></i> Sign out</a>
+                        <a class="dropdown-item" href="{{url('/admin/logout')}}"><i class="ti-power-off m-r-0-5"></i>退出系统</a>
                     </div>
                 </li>
                 <li class="nav-item hidden-md-up">

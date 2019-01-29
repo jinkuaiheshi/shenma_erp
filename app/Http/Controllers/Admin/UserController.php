@@ -13,7 +13,7 @@ use Symfony\Component\VarDumper\Cloner\Data;
 class UserController extends CommonController
 {
     public function index(){
-        $data = User::All();
+        $data = User::where('parentid',session('islogin')->id)->get();
         return view('admin/user')->with('data',$data);
     }
     public function add(Request $request){
@@ -30,6 +30,7 @@ class UserController extends CommonController
                 $Nuser->status = 1;
                 $Nuser->auth = 1;
                 $Nuser->ip = $request->getClientIp();
+                $Nuser->parentid = session('islogin')->id;
                 if($Nuser->save()){
                     $this->log($Nuser->username,'添加用户');
                     return redirect(url()->previous())->with('message', '添加用户成功')->with('type','success')->withInput();
